@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block title %}{{video.videoTitle}} | MY Player{% endblock %}
+{% block css %}
+
+.content{
+    margin-left: var(--sideWidth);
+    display: flex;
+    width: calc(100% - var(--sideWidth));
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.vid{
+    height: 30rem;
+    width: 55rem;
+    padding:0 !important;
+    background-color:#000;
+    border-radius: 1.5rem;
+}
+
+.details{
+	width: 55rem;
+}
+
+.details h3{
+	font-size: 1.25rem;
+}
+
+.channel_detail button{
+	background-color: var(--btnbg);
+	font-weight: 500;
+}
+
+.channel_detail a{
+	font-weight: 500;
+}
+
+{% endblock %}
+{% block body %}
+<div class="container-fluid p-4 content">
+
+ <video class="vid" autoplay='' poster="/media/{{video.thumbnail}}"  controls>
+  <source src="/media/{{video.videoFile}}" type="video/mp4">
+</video> 
+<div class="details mt-3 p-1 text-start">
+	<h3 class="my-1">{{video.videoTitle}}</h3>
+	<div class="channel_detail">
+		<a class="btn font-weight-bolder" href="/channel/{{auth.channelId}}">{{video.channel}}</a>
+		<button class="btn"><i class="bi bi-person-fill"></i> Follow</button>
+		<button class="btn"><i class="bi bi-heart"></i> Like</button>
+		<button class="btn"><i class="bi bi-bookmark"></i> Favorate</button>
+		<button class="btn"><i class="bi bi-share"></i> Share</button>
+		<button class="btn">...</button>
+	</div>
+	<!-- <div class="desc">description</div> -->
+</div>
+
+</div>
+{% endblock %}
